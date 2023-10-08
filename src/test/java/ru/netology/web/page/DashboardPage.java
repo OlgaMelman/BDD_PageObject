@@ -38,5 +38,16 @@ public class DashboardPage {
         var value = text.substring(start + balanceStart.length(), finish);
         return Integer.parseInt(value);
     }
+    public double getCardBalanceDouble(DataHelper.CardInfo cardInfo) {
+        var text = cards.findBy(attribute("data-test-id", cardInfo.getTestId())).getText();
+        return extractBalance(text);
+    }
+
+    private double extractBalanceDouble(String text) {
+        var start = text.indexOf(balanceStart);
+        var finish = text.indexOf(balanceFinish);
+        var value = text.substring(start + balanceStart.length(), finish);
+        return Double.parseDouble(value);
+    }
 
 }
